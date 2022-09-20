@@ -12,7 +12,6 @@ def process(line):
     count[4] = (first[0]+first[1])+(second[1]+second[2])+(third[0]+third[2])
     count[5] = (first[0]+first[1])+(second[0]+second[2])+(third[1]+third[2])
     res, name = min(zip(count, names))
-    print(min(zip(count, names)))
     print(f'{name} {res}')
 
 for line in stdin:
