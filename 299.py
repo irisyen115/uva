@@ -1,5 +1,4 @@
 from sys import stdin
-from typing import Counter
 
 n = int(stdin.readline())
 for x in range(n):
