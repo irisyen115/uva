@@ -8,13 +8,10 @@ for x in range(n):
     a = 0
     b = int(input)
     ans = ""
-    for i in range(len(f_list)-1):
-        if f_list[i] == b:
+    for i in range(len(f_list)-1,-1,-1):
+        if f_list[i] <= b:
             a = i
-            break
-        if f_list[i] < b <= f_list[i+1]:
-            a = i+1
-            break
+            break        
     while a >= 0:
         if f_list[a] <= b:
             b -= f_list[a]
@@ -25,5 +22,4 @@ for x in range(n):
         else:
             ans += "0"
             a -= 1
-    # print(input.strip() + " " + "=" + " " + ans[ans.index("1"):] + " " + "(fib)")
-    print(f'{input.strip()} = {ans[ans.index("1"):]} (fib)')
+    print(f'{input.strip()} = {ans} (fib)')
