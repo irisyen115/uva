@@ -1,36 +1,32 @@
 from sys import stdin
-order = ['', 'shata' , 'hajar', 'lakh']
-basis = [100, 10, 100, 100] 
+basis = [('lakh', 10 ** 5), ('hajar', 10**3), ('shata', 100)]
 def Bangla(n):
-    global order,basis
+    global basis
     ans = []    
-    idx = 0
-    a = []
-    if n > 10 ** 7:
+    if n >= 10 ** 7:
         x = n % (10 ** 7)
         n = n // (10 ** 7)    
     else:
         x = n
         n = n // (10 ** 7)
-    while x > 0:
-        a.append(x % basis[idx])
-        x //= basis[idx]
-        idx += 1
-    b = reversed(list(zip(a,order)))
-    for num, unit in b:
-        ans.append(f'{num} {unit}')
+    for unit, base in basis:
+        if x >= base: 
+            ans.append(f'{x // base} {unit}')
+        x %= base
+    if 0 < x < 100:
+        ans.append(str(x))        
     if n == 0:         
         return ' '.join(ans)
     else:      
-        return f'{Bangla(n)}' + 'kuti ' + ' '.join(ans)
+        if ' '.join(ans) == '':
+            return f'{Bangla(n)} ' + 'kuti'
+        return f'{Bangla(n)} ' + 'kuti ' + ' '.join(ans)
     
 for i,line in enumerate(stdin):
     if line.strip() == "": 
         break
     n = int(line)
     if n == 0:
-        print(f"   {i+1}. "+str(0))
-    if n == 10**7:
-        print(f'{i + 1: >4}. 1kuti')
+        print(f"{i + 1: >4}. {str(0)}")
     else:
         print(f'{i + 1: >4}. {Bangla(n)}')
