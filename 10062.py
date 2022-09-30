@@ -1,16 +1,13 @@
 from sys import stdin
 from collections import Counter
 
-for line in stdin:
-    if line.strip() == "": 
-        break
-    n = line.strip()
+for i,line in enumerate(stdin):
+    n = line.rstrip('\r\n')
     c = Counter(n)
-    names = []
-    ascii = [] 
-    for i,v in enumerate(n):
-        if i == n.index(v):
-            names.append(ord(v))
-            ascii.append(c[v])
-    for a,b in sorted(zip(names,ascii)):
-        print(f'{a} {b}')
+    x = list(c.items())
+    x.sort(key=lambda t:( t[1],-(ord(t[0]))))
+    if i != 0:
+        print('')
+    for a,b in x:
+        print(f'{ord(a)} {b}') 
+    
