@@ -21,7 +21,7 @@ def Bangla(n):
         if ' '.join(ans) == '':
             return f'{Bangla(n)} ' + 'kuti'
         return f'{Bangla(n)} ' + 'kuti ' + ' '.join(ans)
-    
+
 for i,line in enumerate(stdin):
     if line.strip() == "": 
         break
