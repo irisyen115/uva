@@ -13,9 +13,7 @@ for x, line in enumerate(stdin):
     if line.strip() == "0 0":
         break
     a,b = map(int, line.split())
-    mines = []
-    for j in range(a):
-        mines.append(list(stdin.readline().strip()))
+    mines = [list(stdin.readline().strip()) for _ in range(a)]
     if x != 0:
         print('')
     print(f'Field #{x+1}:')
@@ -28,6 +26,6 @@ for x, line in enumerate(stdin):
             else:
                 for c in [-1, 0, 1]:
                     for d in [-1, 0, 1]:
-                        s += check(mines, i + c, j + d)            
+                        s = sum(check(mines, i + c, j + d) for c in [-1, 0, 1] for d in [-1, 0, 1])            
                 arr.append(str(s))        
         print(''.join(arr).strip())
